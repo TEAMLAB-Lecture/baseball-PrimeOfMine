@@ -6,6 +6,9 @@ import baseball_game as bg
 from mock import patch
 from io import StringIO
 
+if __name__== "__main__":
+    unittest.main()
+
 
 class TestBaseballGame(unittest.TestCase):
 

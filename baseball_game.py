@@ -281,10 +281,24 @@ def main():
                 user_input = input('Input guess number : ')
             strike, ball = get_strikes_or_ball(user_input, random_number)
             print(f"Strikes : {strike} , Balls : {ball}")
-            
+ 
         retry = input("You win, one more(Y/N) ? ")
         if (is_no(retry)):
             break
+        elif (is_yes(retry)):
+            continue
+        else:
+            while (not(is_no(retry) or is_yes(retry))):
+                print("Wrong Input, Input again")
+                retry = input("You win, one more(Y/N) ? ")
+                
+            if (is_no(retry)):
+                break
+            elif (is_yes(retry)):
+                continue
+            
+        
+
    
     print("Thank you for using this program")
     print("End of the Game")
