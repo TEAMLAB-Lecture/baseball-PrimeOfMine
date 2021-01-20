@@ -185,7 +185,7 @@ def get_strikes_or_ball(user_input_number, random_number):
     # 조건에 따라 변환되어야 할 결과를 result 변수에 할당
     ball = 0
     strike = 0
-    for i, ele in user_input_number:
+    for i, ele in enumerate(user_input_number):
         if ele in random_number:
             if ele == random_number[i]:
                 strike += 1
@@ -269,18 +269,22 @@ def is_no(one_more_input):
 def main():
     print("Play Baseball")
 
-    random_number = get_not_duplicated_three_digit_number()
-    print(f"Random Number is : {random_number}")
+    while (True):
+        random_number = str(get_not_duplicated_three_digit_number())
+        print(f"Random Number is : {random_number}")
 
-    user_input = input('Input guess number : ')
-    
-    strike = 0
-    while(strike != 3):
-        while (not(is_validated_number(user_input))):
-            print("Wrong Input, Input again")
+        strike = 0
+        while(strike != 3):
             user_input = input('Input guess number : ')
-        
-
+            while (not(is_validated_number(user_input))):
+                print("Wrong Input, Input again")
+                user_input = input('Input guess number : ')
+            strike, ball = get_strikes_or_ball(user_input, random_number)
+            print(f"Strikes : {strike} , Balls : {ball}")
+            
+        retry = input("You win, one more(Y/N) ? ")
+        if (is_no(retry)):
+            break
    
     print("Thank you for using this program")
     print("End of the Game")
