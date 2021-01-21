@@ -269,33 +269,38 @@ def is_no(one_more_input):
 def main():
     print("Play Baseball")
 
-    while (True):
+    user_input = ""
+
+    while (user_input != "0"):
         random_number = str(get_not_duplicated_three_digit_number())
         print(f"Random Number is : {random_number}")
 
         strike = 0
         while(strike != 3):
             user_input = input('Input guess number : ')
-            while (not(is_validated_number(user_input))):
+            while (not(is_validated_number(user_input) or user_input == "0")):
                 print("Wrong Input, Input again")
                 user_input = input('Input guess number : ')
-            strike, ball = get_strikes_or_ball(user_input, random_number)
-            print(f"Strikes : {strike} , Balls : {ball}")
- 
-        retry = input("You win, one more(Y/N) ? ")
-        if (is_no(retry)):
-            break
-        elif (is_yes(retry)):
-            continue
+            if (user_input == "0"):
+                break
+            else:
+                strike, ball = get_strikes_or_ball(user_input, random_number)
+                print(f"Strikes : {strike} , Balls : {ball}")
         else:
-            while (not(is_no(retry) or is_yes(retry))):
-                print("Wrong Input, Input again")
-                retry = input("You win, one more(Y/N) ? ")
-                
+            retry = input("You win, one more(Y/N) ? ")
             if (is_no(retry)):
                 break
             elif (is_yes(retry)):
                 continue
+            else:
+                while (not(is_no(retry) or is_yes(retry))):
+                    print("Wrong Input, Input again")
+                    retry = input("You win, one more(Y/N) ? ")
+
+                if (is_no(retry)):
+                    break
+                elif (is_yes(retry)):
+                    continue
             
         
 
